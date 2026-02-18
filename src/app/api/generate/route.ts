@@ -47,12 +47,30 @@ export async function POST(req: NextRequest) {
       : 'Use an appropriate length for the content.';
 
     const styleInstruction = templateStyle === 'html'
-      ? 'Return the content as clean HTML with proper formatting tags (<p>, <h2>, <strong>, <ul>, <li>, etc.). Make it visually appealing and well-structured.'
+      ? `Create RICH, BEAUTIFUL, and VISUALLY STUNNING HTML with modern design:
+- Use inline CSS styles with vibrant colors, gradients (linear-gradient), shadows (box-shadow)
+- Apply beautiful typography: varied font sizes (18px-32px for headings), line-height (1.6-1.8), letter-spacing
+- Use eye-catching color schemes: gradients like (#6366f1 to #a855f7), (#ec4899 to #f43f5e), (#059669 to #34d399)
+- Add visual hierarchy with styled headings, decorated sections, colored backgrounds
+- Include spacing: generous padding (20px-40px), margins (15px-30px), border-radius (12px-16px)
+- Use tables for layout with background colors, borders, and padding
+- Add decorative elements: colored dividers, gradient boxes, icon emojis (🎉✨🎊💫)
+- Create sections with background colors (#f8fafc, #fef3c7, #ecfdf5) or gradients
+- Style lists with colors, spacing, and visual appeal
+- Make it look like a professional, modern, premium email design
+- DO NOT use plain black (#000000) backgrounds or basic Arial text
+- Think luxury brand newsletter, not plain text email`
       : templateStyle === 'plain'
       ? 'Return the content as plain text without any HTML tags or formatting. Use simple line breaks and spacing.'
-      : 'Return the content in a format suitable for email templates. Use simple HTML if needed for structure.';
+      : `Create elegant HTML with modern styling:
+- Use inline CSS with beautiful colors, gradients, and spacing
+- Apply professional typography and visual elements
+- Add decorative touches like emojis (🎉✨) and colored sections
+- Use gradients like (#6366f1 to #a855f7), backgrounds (#f8fafc, #ecfdf5)
+- Make it visually appealing with proper spacing (padding/margins)
+- Think modern email design, not plain text`;
 
-    const systemPrompt = `You are an expert email content writer. Generate professional, engaging email content based on the user's description.
+    const systemPrompt = `You are an expert email content writer and HTML designer who creates STUNNING, VISUALLY BEAUTIFUL emails.
 
 Requirements:
 - ${lengthInstruction}
@@ -61,7 +79,9 @@ Requirements:
 - Include appropriate greetings and sign-offs
 - Match the tone to the purpose described
 - Do NOT include subject lines unless specifically requested
-- Return ONLY the email body content`;
+- Return ONLY the email body content
+- If generating HTML: Make it look PREMIUM and MODERN - think luxury brand, not basic email
+- Use RICH visual design with colors, gradients, spacing, and beautiful typography`;
 
     // Call Groq API
     const response = await fetch(apiUrl, {
