@@ -262,6 +262,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.8);font-size:12px;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.3)">${v.senderName} | ${v.companyName} © ${v.year}</p>
 </td></tr>
 </table>`, "#667eea");
+      break;
 
     case "newsletter":
       template = baseWrapper(`
@@ -290,6 +291,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.9);font-size:12px;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.3)">📧 ${v.senderName} | ${v.companyName} © ${v.year}</p>
 </td></tr>
 </table>`, "#10b981");
+      break;
 
     case "password-reset":
       template = baseWrapper(`
@@ -322,6 +324,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.9);font-size:12px;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.4)">${v.senderName} | ${v.companyName} © ${v.year}</p>
 </td></tr>
 </table>`, "#dc2626");
+      break;
 
     case "invoice":
       template = baseWrapper(`
@@ -356,6 +359,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.8);font-size:11px;margin:0;font-family:monospace;text-shadow:0 1px 3px rgba(0,0,0,0.4)">${v.companyName} | ${v.senderName} | \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#1e3a8a");
+      break;
 
     case "promotion":
       template = baseWrapper(`
@@ -387,6 +391,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.6);font-size:12px;margin:0;line-height:1.6">${v.senderName} | ${v.companyName} \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#fdf2f8");
+      break;
 
     case "event-invite":
       template = baseWrapper(`
@@ -420,6 +425,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.6);font-size:11px;margin:0;line-height:1.6;font-style:italic">${v.senderName} \u2022 ${v.companyName} \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#f5f3ff");
+      break;
 
     case "feedback":
       template = baseWrapper(`
@@ -466,6 +472,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.6);font-size:12px;margin:0;line-height:1.6">${v.senderName} | ${v.companyName} \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#fffbeb");
+      break;
 
     case "order-confirm":
       template = baseWrapper(`
@@ -508,6 +515,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.6);font-size:11px;margin:0;line-height:1.6;font-weight:600">${v.companyName} | ${v.senderName} | \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#ecfdf5");
+      break;
 
     case "birthday":
       template = baseWrapper(`
@@ -540,6 +548,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.7);font-size:12px;margin:0;line-height:1.6;font-weight:700">With love from ${v.senderName} \u2764\ufe0f | ${v.companyName} \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#fdf2f8");
+      break;
 
     case "dark":
       template = baseWrapper(`
@@ -576,6 +585,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:#475569;font-size:11px;margin:0;line-height:1.6;font-family:monospace;text-transform:uppercase;letter-spacing:1px">${v.senderName} | ${v.companyName} | \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#0f172a");
+      break;
 
     case "casual":
       template = baseWrapper(`
@@ -603,6 +613,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.5);font-size:11px;margin:6px 0 0">${v.companyName} \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#fff7ed");
+      break;
 
     case "just-email":
       template = baseWrapper(`
@@ -626,6 +637,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:rgba(255,255,255,0.35);font-size:11px;margin:4px 0 0">\u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#f1f5f9");
+      break;
 
     case "minimal":
       template = baseWrapper(`
