@@ -32,7 +32,8 @@ export async function POST(req: NextRequest) {
     const html = getTemplate(templateId, { ...variables, subject });
 
     const info = await transporter.sendMail({
-      from: `"${process.env.SENDER_NAME}" <${process.env.SENDER_EMAIL}>`,
+      from: `"${process.env.SENDER_NAME || "Nafij"}" <${process.env.SENDER_EMAIL || "admin@nafij.me"}>`,
+      replyTo: process.env.REPLY_TO_EMAIL || process.env.SENDER_EMAIL || "admin@nafij.me",
       to,
       subject,
       html,
