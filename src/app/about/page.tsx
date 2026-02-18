@@ -1,14 +1,15 @@
 import Link from "next/link";
 
 const skills = [
-  "React.js", "Next.js", "Node.js", "TypeScript", "JavaScript",
-  "Tailwind CSS", "MongoDB", "Firebase", "Express.js", "Git",
+  "React.js", "Next.js", "Node.js", "TypeScript", "JavaScript", "Python",
+  "Tailwind CSS", "MongoDB", "Firebase", "Express.js", "Git", "HTML/CSS",
+  "REST APIs", "MySQL", "Java", "Bootstrap", "Authentication", "Payment Integration",
 ];
 
 const timeline = [
-  { year: "2023 - Present", title: "Full Stack Developer", desc: "Building full stack web applications using React, Next.js, Node.js, MongoDB, and Firebase." },
-  { year: "2023 - Present", title: "Open Source Contributor", desc: "Actively contributing to open-source projects and creating innovative solutions on GitHub." },
-  { year: "Current", title: "Student", desc: "Pursuing Diploma in Engineering at Magura Polytechnic Institute." },
+  { year: "2023 - Present", title: "Full Stack Web Developer", desc: "Building modern, responsive websites and full-stack applications using React, Next.js, Node.js, MongoDB, Python, and the MERN stack. Specializing in user authentication, payment integration, and clean UI/UX design." },
+  { year: "2023 - Present", title: "Open Source Contributor", desc: "Actively contributing to open-source projects and creating innovative solutions on GitHub as @nafijrahaman." },
+  { year: "Current", title: "Student at Magura Polytechnic Institute", desc: "Pursuing Diploma in Engineering while providing professional web development services." },
 ];
 
 export default function AboutPage() {
@@ -18,7 +19,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary mb-4">
-              About the Developer
+              Full Stack Web Developer
             </div>
             <h1 className="text-4xl sm:text-5xl font-black tracking-tight mb-6">
               Nafij{" "}
@@ -26,12 +27,32 @@ export default function AboutPage() {
                 Rahaman
               </span>
             </h1>
-            <p className="text-muted leading-relaxed mb-4">
-              Full Stack Developer and student at Magura Polytechnic Institute. Specializes in building modern web applications with React, Next.js, Node.js, MongoDB, and Firebase.
-            </p>
-            <p className="text-muted leading-relaxed mb-6">
-              Passionate about clean UI/UX design, user authentication systems, payment integrations, and creating innovative solutions. Offers professional web development services.
-            </p>
+            <div className="space-y-4 text-muted leading-relaxed mb-6">
+              <p>
+                Hi, I'm Nafij. I'm a full-stack web developer who helps people and businesses bring their ideas online.
+              </p>
+              <p>
+                I work with HTML, CSS, JavaScript, Python, Node.js, React, TypeScript, the MERN stack, and Java. That means I can handle everything from a simple responsive website to a complete web application with backend and database.
+              </p>
+              <div className="bg-primary/5 border border-primary/20 rounded-xl p-4 my-4">
+                <h3 className="font-bold text-foreground mb-2">What I can do for you:</h3>
+                <ul className="space-y-1 text-sm">
+                  <li>• Build modern, responsive websites that work on all devices</li>
+                  <li>• Develop full-stack applications using React, Node.js, and MongoDB</li>
+                  <li>• Create smooth, user-friendly interfaces</li>
+                  <li>• Fix bugs or add features to existing projects</li>
+                  <li>• Write clean, efficient, and maintainable code</li>
+                </ul>
+              </div>
+              <p>
+                <strong>Why work with me?</strong> I focus on delivering high-quality work, on time, with clear communication. 
+                I keep things simple and practical, so you don't have to worry about unnecessary complexity. 
+                My goal is to build something that actually works for you and your users.
+              </p>
+              <p className="text-sm">
+                If you're looking for a reliable developer who takes projects seriously and is easy to work with, let's talk.
+              </p>
+            </div>
             <div className="flex flex-wrap gap-3">
               <a
                 href="https://nafij.me"
@@ -91,7 +112,25 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <p className="text-xs text-muted">Phone</p>
-                    <p className="text-sm font-medium">01944955128</p>
+                    <p className="text-sm font-medium">+880 1944955128</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted">Location</p>
+                    <p className="text-sm font-medium">Borobongram, Pangsha, Rajbari</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted">Email</p>
+                    <p className="text-sm font-medium">admin@nafij.me</p>
                   </div>
                 </div>
               </div>

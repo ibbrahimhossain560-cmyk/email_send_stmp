@@ -1,6 +1,39 @@
-# NR Mail - SMTP Email Sender Platform
+# NR Mail - Professional SMTP Email Sender Platform by Nafij Rahaman
 
-A full-stack email sender platform built by **Nafij Rahaman**. Send beautiful emails using SMTP with 13 professionally designed HTML templates. Includes authentication, live preview, and one-click Vercel deployment.
+🌐 **Live at**: [email.nafij.me](https://email.nafij.me) | [email.nafijrahaman.me](https://email.nafijrahaman.me)
+
+A professional full-stack email sender platform built by **Nafij Rahaman** ([@nafijrahaman](https://github.com/nafijrahaman)). Send beautiful, responsive emails using SMTP with 13 professionally designed HTML templates. Includes secure authentication, live preview, and one-click Vercel deployment.
+
+## About the Developer
+
+**Nafij Rahaman** - Full Stack Web Developer from Borobongram, Pangsha, Rajbari, Bangladesh.
+
+**Also known as**: Nafij, NafijThePro, NafijNinja, Nafij Khan, Nafijur Rahaman, Nafijur, NafijProBD, NafijPro, Nafij BD, নাফিজ, নাফিজুর রহমান, নাফিজ খান
+
+Hi, I'm Nafij. I'm a full-stack web developer who helps people and businesses bring their ideas online. I work with HTML, CSS, JavaScript, Python, Node.js, React, TypeScript, the MERN stack, and Java. I can handle everything from a simple responsive website to a complete web application with backend and database.
+
+### What I Can Do For You:
+- Build modern, responsive websites that work on all devices
+- Develop full-stack applications using React, Node.js, and MongoDB
+- Create smooth, user-friendly interfaces
+- Fix bugs or add features to existing projects
+- Write clean, efficient, and maintainable code
+- Email automation and SMTP integration
+- Custom email templates and designs
+- API development and third-party integrations
+
+### Why Work With Me?
+I focus on delivering high-quality work, on time, with clear communication. I keep things simple and practical, so you don't have to worry about unnecessary complexity. My goal is to build something that actually works for you and your users.
+
+### 📧 Contact Me:
+- **Email**: [nafijthepro@gmail.com](mailto:nafijthepro@gmail.com) or [admin@nafij.me](mailto:admin@nafij.me)
+- **Portfolio**: [nafij.me](https://nafij.me)
+- **Domains**: [email.nafij.me](https://email.nafij.me) | [email.nafijrahaman.me](https://email.nafijrahaman.me)
+- **GitHub**: [@nafijrahaman](https://github.com/nafijrahaman)
+- **Facebook**: [nafijrahaman2023](https://facebook.com/nafijrahaman2023)
+- **Phone/WhatsApp**: +880 1944955128
+- **Location**: Borobongram Village, Pangsha, Rajbari, Bangladesh 🇧🇩
+- **Institution**: Magura Polytechnic Institute
 
 ## Features
 
@@ -25,7 +58,7 @@ A full-stack email sender platform built by **Nafij Rahaman**. Send beautiful em
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/ibbrahimhossain560-cmyk/email_send_stmp.git
+git clone https://github.com/nafijrahaman/email_send_stmp.git
 cd email_send_stmp
 ```
 
@@ -45,9 +78,10 @@ SMTP_HOST=smtp-relay.brevo.com
 SMTP_PORT=587
 SMTP_USER=a29fec001@smtp-brevo.com
 SMTP_PASS=your_smtp_key_here
-SENDER_EMAIL=a29fec001@smtp-brevo.com
-SENDER_NAME=Nafij Rahaman
-ADMIN_PASSWORD=nafijpro++
+SENDER_EMAIL=admin@nafij.me
+SENDER_NAME=Nafij
+REPLY_TO_EMAIL=admin@nafij.me
+ADMIN_PASSWORD=your_secure_password_here
 ```
 
 4. Run development server:
@@ -66,7 +100,7 @@ npm run dev
 
 ## Authentication
 
-Email sending requires authentication. Log in at `/login` with the admin password (default: `nafijpro++`). Set your own via the `ADMIN_PASSWORD` environment variable.
+Email sending requires authentication for security. Log in at `/login` with your admin password set via the `ADMIN_PASSWORD` environment variable. **Important:** Never commit your actual password to version control.
 
 ## API Endpoints
 
@@ -96,11 +130,32 @@ Email sending requires authentication. Log in at `/login` with the admin passwor
 
 ## Developer
 
-**Nafij Rahaman** - Full Stack Developer
+**Nafij Rahaman** (also known as: Nafij, NafijThePro, NafijNinja, Nafij Khan, Nafijur Rahaman, Nafijur, NafijProBD, NafijPro, Nafij BD, Nafij Bangladesh, @nafijrahaman, নাফিজ, নাফিজুর রহমান, নাফিজ খান, নাফিজ বাংলাদেশ)
 
-- Portfolio: [nafij.me](https://nafij.me)
-- GitHub: [nafijrahaman](https://github.com/nafijrahaman)
-- Facebook: [nafijrahaman2023](https://facebook.com/nafijrahaman2023)
-- Phone: 01944955128
+Full Stack Web Developer specializing in React, Next.js, Node.js, TypeScript, MongoDB, Python, and the MERN stack.
 
-Student at Magura Polytechnic Institute
+### 📬 Contact Information:
+- **Primary Email**: [nafijthepro@gmail.com](mailto:nafijthepro@gmail.com)
+- **Business Email**: [admin@nafij.me](mailto:admin@nafij.me)
+- **Portfolio**: [nafij.me](https://nafij.me)
+- **Email Platform**: [email.nafij.me](https://email.nafij.me) | [email.nafijrahaman.me](https://email.nafijrahaman.me)
+- **GitHub**: [@nafijrahaman](https://github.com/nafijrahaman)
+- **Facebook**: [nafijrahaman2023](https://facebook.com/nafijrahaman2023)
+- **Phone/WhatsApp**: +880 1944955128
+- **Location**: Borobongram Village, Pangsha, Rajbari, Bangladesh 🇧🇩
+- **Institution**: Magura Polytechnic Institute
+
+### Skills & Expertise:
+HTML, CSS, JavaScript, TypeScript, Python, Java, React.js, Next.js, Node.js, Express.js, MongoDB, Firebase, MySQL, PostgreSQL, Tailwind CSS, Bootstrap, Git, GitHub, REST APIs, GraphQL, Authentication Systems, JWT, OAuth, Payment Integration (Stripe, PayPal), Email Automation, SMTP Integration, Full Stack Development, Web Design, UI/UX, Responsive Design, Mobile-First Design, SEO Optimization, Performance Optimization, Testing, Debugging, Deployment (Vercel, Netlify, Heroku), Docker, CI/CD
+
+### Services Offered:
+- Custom Website Development
+- Full Stack Web Applications (MERN Stack)
+- E-commerce Solutions with Payment Gateway
+- API Development & Integration
+- Database Design & Management
+- Bug Fixes & Feature Additions
+- Code Review & Optimization
+- Technical Consultation
+
+If you're looking for a reliable developer who takes projects seriously and is easy to work with, let's talk.

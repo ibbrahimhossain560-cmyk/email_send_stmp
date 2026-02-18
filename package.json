@@ -2,6 +2,43 @@
   "name": "email_send_stmp",
   "version": "0.1.0",
   "private": true,
+  "description": "Professional SMTP email sender platform by Nafij Rahaman (NafijThePro, NafijNinja) with 13+ templates. Available at email.nafij.me and email.nafijrahaman.me",
+  "author": {
+    "name": "Nafij Rahaman",
+    "email": "nafijthepro@gmail.com",
+    "url": "https://nafij.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nafijrahaman/email_send_stmp.git"
+  },
+  "homepage": "https://email.nafij.me",
+  "keywords": [
+    "email",
+    "smtp",
+    "email-sender",
+    "brevo",
+    "nodemailer",
+    "email-templates",
+    "nextjs",
+    "react",
+    "typescript",
+    "nafij",
+    "nafijrahaman",
+    "nafijthepro",
+    "nafijninja",
+    "nafij-khan",
+    "nafijprobd",
+    "email.nafij.me",
+    "email.nafijrahaman.me",
+    "full-stack",
+    "web-developer",
+    "bangladesh",
+    "mern-stack",
+    "email-automation",
+    "smtp-relay",
+    "transactional-email"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
