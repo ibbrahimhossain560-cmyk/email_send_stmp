@@ -37,15 +37,42 @@ I focus on delivering high-quality work, on time, with clear communication. I ke
 
 ## Features
 
-- ✨ **NEW: AI Email Enhancement** - Magic button to fix grammar, spelling, and improve clarity using free Groq API
+### 🚀 Compose Modes (4 Ways to Create Emails)
+1. **📧 Template Mode** - 13 pre-designed professional HTML templates
+2. **🎨 Custom HTML** - Paste your own HTML code (like Gmail)
+3. **📝 Plain Text** - Simple text emails without formatting
+4. **🤖 AI Generate** - Let AI write your entire email from a description
+
+### ✨ AI-Powered Features
+- **AI Content Generator** - Describe what you want, AI writes the email
+  - Control length (word/character count)
+  - Choose style (HTML, plain text, or default)
+  - Auto-generates subject lines
+- **Magic ✨ Enhancement** - Fix grammar, spelling, improve clarity
+  - Works on both subject lines and body text
+  - Uses free Groq API (30 req/min, 14.4k/day)
+
+### 📧 Email Features
 - SMTP email sending via Brevo relay
-- 13 HTML email templates (Welcome, Newsletter, Password Reset, Invoice, Promotion, Event Invite, Feedback, Order Confirmation, Birthday, Minimal, Dark Mode, Casual, Just Email)
-- Password-protected email sending (authentication required)
-- Live email preview
+- 13 professional HTML templates with dynamic content
+- **Custom button links** - Add your own CTAs with custom URLs and text
+- Live email preview for all modes
+- Recipient name personalization
+- Password-protected sending (authentication required)
+
+### 🎨 Design & UX
 - Fully responsive design
+- Clean, modern UI with mode selector
 - Dark mode template with neon accents
+- Real-time status feedback
 - Vercel deploy-ready
-- Built with Next.js, TypeScript, and Tailwind CSS
+
+### 🛠 Technical
+- Built with Next.js 16, React 19, TypeScript
+- Tailwind CSS for styling
+- Nodemailer for SMTP
+- Token-based authentication
+- OpenAI-compatible AI API integration
 
 ## Tech Stack
 
@@ -117,13 +144,36 @@ Email sending requires authentication for security. Log in at `/login` with your
 | Method | Route | Description |
 |--------|-------|-------------|
 | GET | /api/templates | List all templates |
-| POST | /api/send | Send an email (auth required) |
-| POST | /api/preview | Preview a template |
+| POST | /api/send | Send an email (auth required) - supports templates, HTML, and plain text |
+| POST | /api/preview | Preview a template or custom content |
 | POST | /api/auth | Login with password |
 | POST | /api/auth/verify | Verify auth token |
 | POST | /api/enhance | AI-enhance email text (auth required) ✨ |
+| POST | /api/generate | AI-generate full email content from description (auth required) 🤖 |
 
-## ✨ AI Email Enhancement (Magic Button)
+## ✨ AI Features
+
+### 🤖 AI Content Generator
+
+Describe what you want, and AI will write the entire email for you:
+
+```bash
+POST /api/generate
+{
+  "description": "Write a professional welcome email for new customers",
+  "length": 150,  // Optional: target word/character count
+  "templateStyle": "html"  // "html", "plain", or "default"
+}
+```
+
+**Features:**
+- Generates complete email body
+- Auto-creates subject line
+- Control content length
+- Choose HTML or plain text style
+- Perfect for quick email drafts
+
+### 🔧 Magic ✨ Enhancement
 
 The Magic ✨ button uses **free AI models** from Groq to automatically improve your emails:
 

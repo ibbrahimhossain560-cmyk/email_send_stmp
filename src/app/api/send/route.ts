@@ -18,25 +18,42 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { to, subject, templateId, variables } = body;
+    const { to, subject, templateId, variables, html: customHtml, text: plainText } = body;
 
     if (!to || !subject) {
       return NextResponse.json({ error: "Missing required fields: to, subject" }, { status: 400 });
     }
 
-    const tpl = templateList.find((t) => t.id === templateId);
-    if (!tpl) {
-      return NextResponse.json({ error: "Invalid template ID" }, { status: 400 });
-    }
+    let emailHtml = "";
+    let emailText = "";
 
-    const html = getTemplate(templateId, { ...variables, subject });
+    // Handle different compose modes
+    if (customHtml) {
+      // Custom HTML mode
+      emailHtml = customHtml;
+      emailText = customHtml.replace(/<[^>]*>/g, ''); // Strip HTML for plain text fallback
+    } else if (plainText) {
+      // Plain text mode
+      emailText = plainText;
+      emailHtml = `<pre style="font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word;">${plainText}</pre>`;
+    } else if (templateId) {
+      // Template mode
+      const tpl = templateList.find((t) => t.id === templateId);
+      if (!tpl) {
+        return NextResponse.json({ error: "Invalid template ID" }, { status: 400 });
+      }
+      emailHtml = getTemplate(templateId, { ...variables, subject });
+    } else {
+      return NextResponse.json({ error: "No content provided. Use templateId, html, or text." }, { status: 400 });
+    }
 
     const info = await transporter.sendMail({
       from: `"${process.env.SENDER_NAME || "Nafij"}" <${process.env.SENDER_EMAIL || "admin@nafij.me"}>`,
       replyTo: process.env.REPLY_TO_EMAIL || process.env.SENDER_EMAIL || "admin@nafij.me",
       to,
       subject,
-      html,
+      html: emailHtml,
+      text: emailText || undefined,
     });
 
     return NextResponse.json({ success: true, messageId: info.messageId });

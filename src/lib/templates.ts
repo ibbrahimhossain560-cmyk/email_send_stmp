@@ -34,12 +34,16 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
     body: variables.body || "",
     companyName: variables.companyName || "NR Mail",
     year: new Date().getFullYear().toString(),
+    buttonLink: variables.buttonLink || "#",
+    buttonText: variables.buttonText || "Get Started",
     ...variables,
   };
 
+  let template = "";
+
   switch (id) {
     case "welcome":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#6366f1 0%,#8b5cf6 40%,#a855f7 100%);padding:50px 40px;text-align:center">
 <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);border-radius:50%;margin:0 auto 20px;line-height:70px;font-size:32px">&#128075;</div>
@@ -66,7 +70,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "newsletter":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#059669 0%,#10b981 50%,#34d399 100%);padding:45px 40px;text-align:center">
 <table width="100%"><tr><td style="text-align:left"><span style="color:rgba(255,255,255,0.7);font-size:12px;text-transform:uppercase;letter-spacing:3px;font-weight:600">Newsletter</span></td><td style="text-align:right"><span style="color:rgba(255,255,255,0.7);font-size:12px">${new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}</span></td></tr></table>
@@ -98,7 +102,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "password-reset":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#dc2626 0%,#ef4444 50%,#f87171 100%);padding:45px 40px;text-align:center">
 <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);border-radius:50%;margin:0 auto 20px;line-height:70px;font-size:32px">&#128272;</div>
@@ -124,7 +128,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "invoice":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#1e293b 0%,#334155 50%,#475569 100%);padding:40px">
 <table width="100%"><tr>
@@ -153,7 +157,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "promotion":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#ec4899 0%,#f43f5e 50%,#fb7185 100%);padding:50px 40px;text-align:center">
 <div style="background:rgba(255,255,255,0.2);display:inline-block;padding:8px 20px;border-radius:50px;margin-bottom:15px"><span style="color:#fff;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:2px">&#128293; Limited Time Only</span></div>
@@ -178,7 +182,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "event-invite":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#9333ea 100%);padding:50px 40px;text-align:center">
 <div style="background:rgba(255,255,255,0.15);display:inline-block;padding:8px 20px;border-radius:50px;margin-bottom:15px"><span style="color:#fff;font-size:13px;font-weight:600;letter-spacing:1px">&#127881; YOU'RE INVITED</span></div>
@@ -207,7 +211,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "feedback":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#f59e0b 0%,#eab308 50%,#fbbf24 100%);padding:45px 40px;text-align:center">
 <div style="font-size:48px;margin-bottom:15px">&#128172;</div>
@@ -237,7 +241,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "order-confirm":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#059669 0%,#10b981 50%,#34d399 100%);padding:45px 40px;text-align:center">
 <div style="width:70px;height:70px;background:rgba(255,255,255,0.2);border-radius:50%;margin:0 auto 18px;line-height:70px;font-size:36px">&#10004;</div>
@@ -271,7 +275,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "birthday":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="background:linear-gradient(135deg,#c026d3 0%,#a855f7 30%,#ec4899 60%,#f43f5e 100%);padding:55px 40px;text-align:center">
 <div style="font-size:64px;margin-bottom:15px">&#127874;</div>
@@ -304,7 +308,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`);
 
     case "dark":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#0f172a;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);border:1px solid #1e293b">
 <tr><td style="background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);padding:45px 40px;text-align:center;border-bottom:1px solid #2d3a4f">
 <div style="width:60px;height:60px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:14px;margin:0 auto 20px;line-height:60px;font-size:26px;box-shadow:0 4px 20px rgba(99,102,241,0.3)">&#9889;</div>
@@ -332,7 +336,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`, "#080e1e");
 
     case "casual":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#fffbeb;border-radius:20px;overflow:hidden;box-shadow:0 4px 30px rgba(0,0,0,0.06);border:2px solid #fde68a">
 <tr><td style="padding:40px 40px 30px;text-align:center">
 <div style="font-size:48px;margin-bottom:12px">&#128400;</div>
@@ -358,7 +362,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`, "#fefce8");
 
     case "just-email":
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06)">
 <tr><td style="padding:35px 35px 0">
 <p style="color:#111827;font-size:16px;line-height:1.8;margin:0 0 18px">Hi ${v.recipientName},</p>
@@ -374,8 +378,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </table>`, "#f9fafb");
 
     case "minimal":
-    default:
-      return baseWrapper(`
+      template = baseWrapper(`
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.1)">
 <tr><td style="padding:45px 40px 35px;border-bottom:3px solid #1e293b">
 <h1 style="color:#1e293b;margin:0;font-size:24px;font-weight:800;letter-spacing:-0.5px">${v.subject || "Hello"}</h1>
@@ -392,5 +395,26 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 <p style="color:#94a3b8;font-size:12px;margin:0">${v.companyName} &copy; ${v.year}</p>
 </td></tr>
 </table>`);
+      break;
+
+    default:
+      template = baseWrapper(`<p style="padding:40px;text-align:center;color:#64748b">Template not found</p>`);
+      break;
   }
+
+  // Post-process: Replace primary action button hrefs and text dynamically
+  // This allows button links and text to be customized without modifying each template
+  if (v.buttonLink && v.buttonLink !== "#") {
+    // Replace the first href="#" with the actual button link (primary CTA)
+    template = template.replace(/(<a\s+href="#"[^>]*>)(Get Started Now|Read Full Newsletter|Reset My Password|Pay Invoice|Shop Now|RSVP Now|Track Your Order|View Order Details|Send Feedback|Celebrate\s*&#127881;|Discover More|Submit|Get Started)(<\/a>)/i, (match, openTag, text, closeTag) => {
+      const newText = v.buttonText || text;
+      return openTag.replace('href="#"', `href="${v.buttonLink}"`) + newText + closeTag;
+    });
+  } else if (v.buttonText && v.buttonText !== "Get Started") {
+    // Just replace button text if only text is provided
+    template = template.replace(/(Get Started Now|Read Full Newsletter|Reset My Password|Pay Invoice|Shop Now|RSVP Now|Track Your Order|View Order Details|Send Feedback|Celebrate\s*&#127881;|Discover More|Submit|Get Started)(?=<\/a>)/i, v.buttonText);
+  }
+
+  return template;
 }
+
