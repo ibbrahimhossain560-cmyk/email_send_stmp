@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       : 'Use an appropriate length for the content.';
 
     const styleInstruction = templateStyle === 'html'
-      ? `Create RICH, BEAUTIFUL, and VISUALLY STUNNING HTML with modern design:
+      ? `Create RICH, BEAUTIFUL, VISUALLY STUNNING, and 100% MOBILE RESPONSIVE HTML with modern design:
 - Use inline CSS styles with vibrant colors, gradients (linear-gradient), shadows (box-shadow)
 - Apply beautiful typography: varied font sizes (18px-32px for headings), line-height (1.6-1.8), letter-spacing
 - Use eye-catching color schemes: gradients like (#6366f1 to #a855f7), (#ec4899 to #f43f5e), (#059669 to #34d399)
@@ -59,16 +59,23 @@ export async function POST(req: NextRequest) {
 - Style lists with colors, spacing, and visual appeal
 - Make it look like a professional, modern, premium email design
 - DO NOT use plain black (#000000) backgrounds or basic Arial text
-- Think luxury brand newsletter, not plain text email`
+- Think luxury brand newsletter, not plain text email
+- RESPONSIVE: Add class="container" to main wrapper tables (max-width:600px)
+- RESPONSIVE: Add class="mobile-padding" to content td elements with padding
+- RESPONSIVE: Add class="mobile-heading" to h1 elements, class="mobile-subheading" to h2/h3
+- RESPONSIVE: Add class="mobile-text" to paragraph elements
+- RESPONSIVE: Add class="mobile-button" to button/CTA anchor links
+- These classes ensure perfect display on mobile (320px), tablet (768px), and desktop (1200px+)`
       : templateStyle === 'plain'
       ? 'Return the content as plain text without any HTML tags or formatting. Use simple line breaks and spacing.'
-      : `Create elegant HTML with modern styling:
+      : `Create elegant HTML with modern styling and MOBILE RESPONSIVE design:
 - Use inline CSS with beautiful colors, gradients, and spacing
 - Apply professional typography and visual elements
 - Add decorative touches like emojis (🎉✨) and colored sections
 - Use gradients like (#6366f1 to #a855f7), backgrounds (#f8fafc, #ecfdf5)
 - Make it visually appealing with proper spacing (padding/margins)
-- Think modern email design, not plain text`;
+- Think modern email design, not plain text
+- RESPONSIVE: Add class="container" to tables, class="mobile-padding" to td, class="mobile-heading" to h1, class="mobile-text" to p, class="mobile-button" to buttons`;
 
     const systemPrompt = `You are an expert email content writer and HTML designer who creates STUNNING, VISUALLY BEAUTIFUL emails.
 
