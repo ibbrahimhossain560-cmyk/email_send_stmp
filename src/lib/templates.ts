@@ -230,7 +230,7 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
 </div>
 </td></tr>
 <tr><td style="background:#f8fafc;padding:25px 40px;text-align:center;border-top:1px solid #e2e8f0">
-<p style="color:#94a3b8;font-size:11px;margin:0;line-height:6;font-family:monospace">${v.companyName} | ${v.senderName} | \u00a9 ${v.year}</p>
+<p style="color:#94a3b8;font-size:11px;margin:0;line-height:1.6;font-family:monospace">${v.companyName} | ${v.senderName} | \u00a9 ${v.year}</p>
 </td></tr>
 </table>`, "#f8fafc");
 
