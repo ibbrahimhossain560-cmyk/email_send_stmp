@@ -76,13 +76,15 @@ Edit `.env.local` with your SMTP credentials:
 ```
 SMTP_HOST=smtp-relay.brevo.com
 SMTP_PORT=587
-SMTP_USER=a29fec001@smtp-brevo.com
-SMTP_PASS=your_smtp_key_here
-SENDER_EMAIL=admin@nafij.me
-SENDER_NAME=Nafij
-REPLY_TO_EMAIL=admin@nafij.me
+SMTP_USER=your_brevo_login@smtp-brevo.com
+SMTP_PASS=your_smtp_api_key_here
+SENDER_EMAIL=your_verified_sender@yourdomain.com
+SENDER_NAME=Your Name
+REPLY_TO_EMAIL=your_reply_to@yourdomain.com
 ADMIN_PASSWORD=your_secure_password_here
 ```
+
+> ⚠️ **Security Note**: Never commit `.env.local` or expose your real SMTP credentials in public repositories.
 
 4. Run development server:
 ```bash
