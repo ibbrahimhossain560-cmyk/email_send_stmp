@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Verify authentication token
+// Verify authentication token (same logic as /api/send)
 function verifyToken(token: string): boolean {
-  const password = process.env.ADMIN_PASSWORD || "";
-  const expected = Buffer.from(password).toString("base64");
-  return token === expected;
+  try {
+    const decoded = Buffer.from(token, "base64").toString("utf-8");
+    const adminPassword = process.env.ADMIN_PASSWORD || "nafijpro++";
+    return decoded.startsWith("nrmail_") && decoded.endsWith(`_${adminPassword}`);
+  } catch {
+    return false;
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -12,12 +16,12 @@ export async function POST(req: NextRequest) {
     // Check authentication
     const authHeader = req.headers.get("Authorization");
     if (!authHeader?.startsWith("Bearer ")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized - Please login first" }, { status: 401 });
     }
 
     const token = authHeader.replace("Bearer ", "");
     if (!verifyToken(token)) {
-      return NextResponse.json({ error: "Invalid token" }, { status: 401 });
+      return NextResponse.json({ error: "Invalid or expired token - Please login again" }, { status: 401 });
     }
 
     const { text, type } = await req.json();
