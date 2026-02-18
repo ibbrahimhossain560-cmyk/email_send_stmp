@@ -22,6 +22,116 @@ export const templateList: TemplateInfo[] = [
   { id: "just-email", name: "Just Email", description: "Plain and simple - just the message, nothing extra", category: "General", preview: "bg-gradient-to-br from-neutral-400 to-stone-500" },
 ];
 
+// 100 Random Inspirational Quotes
+const randomQuotes = [
+  "The only way to do great work is to love what you do. - Steve Jobs",
+  "Innovation distinguishes between a leader and a follower. - Steve Jobs",
+  "Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill",
+  "Believe you can and you're halfway there. - Theodore Roosevelt",
+  "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "Everything you've ever wanted is on the other side of fear. - George Addair",
+  "Success is not how high you have climbed, but how you make a positive difference to the world. - Roy T. Bennett",
+  "Don't watch the clock; do what it does. Keep going. - Sam Levenson",
+  "The only impossible journey is the one you never begin. - Tony Robbins",
+  "Life is 10% what happens to you and 90% how you react to it. - Charles R. Swindoll",
+  "Change your thoughts and you change your world. - Norman Vincent Peale",
+  "The only limit to our realization of tomorrow will be our doubts of today. - Franklin D. Roosevelt",
+  "Do what you can, with what you have, where you are. - Theodore Roosevelt",
+  "Act as if what you do makes a difference. It does. - William James",
+  "Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau",
+  "The way to get started is to quit talking and begin doing. - Walt Disney",
+  "Don't be afraid to give up the good to go for the great. - John D. Rockefeller",
+  "I find that the harder I work, the more luck I seem to have. - Thomas Jefferson",
+  "Don't let yesterday take up too much of today. - Will Rogers",
+  "You learn more from failure than from success. Don't let it stop you. - Unknown",
+  "It's not whether you get knocked down, it's whether you get up. - Vince Lombardi",
+  "If you are working on something that you really care about, you don't have to be pushed. - Steve Jobs",
+  "People who are crazy enough to think they can change the world, are the ones who do. - Rob Siltanen",
+  "Failure will never overtake me if my determination to succeed is strong enough. - Og Mandino",
+  "We may encounter many defeats but we must not be defeated. - Maya Angelou",
+  "Knowing is not enough; we must apply. Wishing is not enough; we must do. - Johann Wolfgang Von Goethe",
+  "Imagine your life is perfect in every respect; what would it look like? - Brian Tracy",
+  "We generate fears while we sit. We overcome them by action. - Dr. Henry Link",
+  "Whether you think you can or think you can't, you're right. - Henry Ford",
+  "Security is mostly a superstition. Life is either a daring adventure or nothing. - Helen Keller",
+  "The man who has confidence in himself gains the confidence of others. - Hasidic Proverb",
+  "The only person you are destined to become is the person you decide to be. - Ralph Waldo Emerson",
+  "Go confidently in the direction of your dreams. Live the life you have imagined. - Henry David Thoreau",
+  "When I stand before God at the end of my life, I would hope that I would not have a single bit of talent left. - Erma Bombeck",
+  "Few things can help an individual more than to place responsibility on him. - Booker T. Washington",
+  "Spread love everywhere you go. Let no one ever come to you without leaving happier. - Mother Teresa",
+  "When you reach the end of your rope, tie a knot in it and hang on. - Franklin D. Roosevelt",
+  "Always remember that you are absolutely unique. Just like everyone else. - Margaret Mead",
+  "Don't judge each day by the harvest you reap but by the seeds that you plant. - Robert Louis Stevenson",
+  "The best time to plant a tree was 20 years ago. The second best time is now. - Chinese Proverb",
+  "An unexamined life is not worth living. - Socrates",
+  "Eighty percent of success is showing up. - Woody Allen",
+  "Your time is limited, so don't waste it living someone else's life. - Steve Jobs",
+  "Winning isn't everything, but wanting to win is. - Vince Lombardi",
+  "I am not a product of my circumstances. I am a product of my decisions. - Stephen Covey",
+  "Every child is an artist. The problem is how to remain an artist once he grows up. - Pablo Picasso",
+  "You can never cross the ocean until you have the courage to lose sight of the shore. - Christopher Columbus",
+  "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel. - Maya Angelou",
+  "Either you run the day, or the day runs you. - Jim Rohn",
+  "Whether you think you can or you think you can't, you're right. - Henry Ford",
+  "The two most important days in your life are the day you are born and the day you find out why. - Mark Twain",
+  "Whatever you can do, or dream you can, begin it. Boldness has genius, power and magic in it. - Johann Wolfgang von Goethe",
+  "The best revenge is massive success. - Frank Sinatra",
+  "People often say that motivation doesn't last. Well, neither does bathing. That's why we recommend it daily. - Zig Ziglar",
+  "Life shrinks or expands in proportion to one's courage. - Anais Nin",
+  "If you hear a voice within you say you cannot paint, then by all means paint and that voice will be silenced. - Vincent Van Gogh",
+  "There is only one way to avoid criticism: do nothing, say nothing, and be nothing. - Aristotle",
+  "Ask and it will be given to you; search, and you will find; knock and the door will be opened for you. - Jesus",
+  "The only person you are destined to become is the person you decide to be. - Ralph Waldo Emerson",
+  "Believe in yourself. You are braver than you think, more talented than you know, and capable of more than you imagine. - Roy T. Bennett",
+  "I learned that courage was not the absence of fear, but the triumph over it. - Nelson Mandela",
+  "There is no greater agony than bearing an untold story inside you. - Maya Angelou",
+  "Everything has beauty, but not everyone can see. - Confucius",
+  "It is our attitude at the beginning of a difficult task which, more than anything else, will affect its successful outcome. - William James",
+  "Optimism is the faith that leads to achievement. Nothing can be done without hope and confidence. - Helen Keller",
+  "Learn from the past, set vivid, detailed goals for the future, and live in the only moment of time over which you have any control: now. - Denis Waitley",
+  "We become what we think about most of the time, and that's the strangest secret. - Earl Nightingale",
+  "You are never too old to set another goal or to dream a new dream. - C.S. Lewis",
+  "Try not to become a person of success, but rather try to become a person of value. - Albert Einstein",
+  "A winner is a dreamer who never gives up. - Nelson Mandela",
+  "If you want to lift yourself up, lift up someone else. - Booker T. Washington",
+  "I have been impressed with the urgency of doing. Knowing is not enough; we must apply. - Leonardo da Vinci",
+  "Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless. - Jamie Paolinetti",
+  "You take your life in your own hands, and what happens? A terrible thing, no one to blame. - Erica Jong",
+  "What's money? A man is a success if he gets up in the morning and goes to bed at night and in between does what he wants to do. - Bob Dylan",
+  "I didn't fail the test. I just found 100 ways to do it wrong. - Benjamin Franklin",
+  "In order to succeed, your desire for success should be greater than your fear of failure. - Bill Cosby",
+  "A person who never made a mistake never tried anything new. - Albert Einstein",
+  "The person who says it cannot be done should not interrupt the person who is doing it. - Chinese Proverb",
+  "There are no traffic jams along the extra mile. - Roger Staubach",
+  "It is never too late to be what you might have been. - George Eliot",
+  "You become what you believe. - Oprah Winfrey",
+  "I would rather die of passion than of boredom. - Vincent van Gogh",
+  "A truly rich man is one whose children run into his arms when his hands are empty. - Unknown",
+  "It is not what you do for your children, but what you have taught them to do for themselves. - Ann Landers",
+  "If you want your children to turn out well, spend twice as much time with them, and half as much money. - Abigail Van Buren",
+  "Build your own dreams, or someone else will hire you to build theirs. - Farrah Gray",
+  "The battles that count aren't the ones for gold medals. The struggles within yourself are where it's at. - Jesse Owens",
+  "Education costs money. But then so does ignorance. - Sir Claus Moser",
+  "I have learned over the years that when one's mind is made up, this diminishes fear. - Rosa Parks",
+  "It does not matter how slowly you go as long as you do not stop. - Confucius",
+  "If you look at what you have in life, you'll always have more. - Oprah Winfrey",
+  "Remember that not getting what you want is sometimes a wonderful stroke of luck. - Dalai Lama",
+  "You can't use up creativity. The more you use, the more you have. - Maya Angelou",
+  "Dream big and dare to fail. - Norman Vaughan",
+  "Our lives begin to end the day we become silent about things that matter. - Martin Luther King Jr.",
+  "Do what you feel in your heart to be right, for you'll be criticized anyway. - Eleanor Roosevelt",
+  "Happiness is not something readymade. It comes from your own actions. - Dalai Lama",
+  "Whatever the mind of man can conceive and believe, it can achieve. - Napoleon Hill",
+  "Strive not to be a success, but rather to be of value. - Albert Einstein",
+  "I attribute my success to this: I never gave or took any excuse. - Florence Nightingale"
+];
+
+function getRandomQuote(): string {
+  return randomQuotes[Math.floor(Math.random() * randomQuotes.length)];
+}
+
 function baseWrapper(content: string, bgColor: string = "#f4f4f7"): string {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -127,81 +237,91 @@ export function getTemplate(id: string, variables: Record<string, string>): stri
   switch (id) {
     case "welcome":
       template = baseWrapper(`
-<table width="100%" cellpadding="0" cellspacing="0" class="container" style="max-width:620px;margin:0 auto;background:#ffffff;border:4px solid #6366f1;border-radius:24px;overflow:hidden">
-<tr><td style="background:#6366f1;padding:8px 20px">
-<table width="100%"><tr>
-<td style="text-align:left;color:#fff;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase">Welcome 👋</td>
-<td style="text-align:right;color:rgba(255,255,255,0.8);font-size:12px">${v.companyName}</td>
-</tr></table>
-</td></tr>
-<tr><td class="mobile-padding" style="padding:60px 50px;background-image:linear-gradient(180deg,#f8f9ff 0%,#ffffff 100%)">
-<div style="background:#6366f1;width:80px;height:80px;border-radius:20px;margin:0 auto 30px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(99,102,241,0.3);transform:rotate(-5deg)">
-<span style="font-size:40px;display:block;transform:rotate(5deg)">✨</span>
+<table width="100%" cellpadding="0" cellspacing="0" class="container" style="max-width:620px;margin:0 auto;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:30px;overflow:hidden;box-shadow:0 20px 60px rgba(102,126,234,0.4),0 0 0 1px rgba(255,255,255,0.1) inset">
+<tr><td style="background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);padding:25px 40px;border-bottom:1px solid rgba(255,255,255,0.2);box-shadow:0 8px 32px rgba(0,0,0,0.1)">
+<div style="text-align:center">
+<div style="width:100px;height:100px;margin:0 auto 20px;background:linear-gradient(135deg,rgba(255,255,255,0.3),rgba(255,255,255,0.1));border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,0.5);box-shadow:0 0 40px rgba(255,255,255,0.5),inset 0 0 20px rgba(255,255,255,0.2)">
+<span style="font-size:50px">🎉</span>
 </div>
-<h1 class="mobile-heading" style="color:#1e293b;margin:0 0 20px;font-size:36px;font-weight:900;text-align:center;letter-spacing:-1px;font-family:Georgia,serif">${v.subject}</h1>
-<p class="mobile-text" style="color:#64748b;font-size:18px;line-height:1.8;margin:0 0 15px;text-align:center;font-style:italic">Hi ${v.recipientName},</p>
-<p class="mobile-text" style="color:#334155;font-size:16px;line-height:1.9;margin:0 0 35px;text-align:center;white-space:pre-wrap">${v.body}</p>
-<div style="text-align:center;margin:0 0 20px">
-<a href="#" class="mobile-button" style="display:inline-block;background:#6366f1;color:#fff;text-decoration:none;padding:18px 55px;border-radius:12px;font-weight:700;font-size:17px;box-shadow:0 8px 24px rgba(99,102,241,0.35);letter-spacing:0.5px;text-transform:uppercase">Get Started Now</a>
+<h1 class="mobile-heading" style="color:#fff;margin:0;font-size:36px;font-weight:900;text-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 60px rgba(255,255,255,0.5)">${v.subject || "Welcome Aboard!"}</h1>
 </div>
 </td></tr>
-<tr><td style="background:#f8fafc;padding:30px 40px;text-align:center">
-<p style="color:#94a3b8;font-size:11px;margin:0;line-height:1.6;letter-spacing:1px">Sent by ${v.senderName} • ${v.companyName} © ${v.year}</p>
+<tr><td class="mobile-padding" style="padding:50px 45px">
+<div style="background:rgba(255,255,255,0.25);backdrop-filter:blur(20px);border-radius:20px;padding:35px;border:1px solid rgba(255,255,255,0.3);box-shadow:0 8px 32px rgba(0,0,0,0.1),inset 0 1px 0 rgba(255,255,255,0.5)">
+<p class="mobile-text" style="color:#fff;font-size:18px;line-height:1.8;margin:0 0 12px;text-shadow:0 2px 10px rgba(0,0,0,0.2)">Hi <strong style="color:#fff;font-weight:800">${v.recipientName}</strong>,</p>
+<p class="mobile-text" style="color:rgba(255,255,255,0.95);font-size:16px;line-height:1.9;margin:0 0 25px;white-space:pre-wrap">${v.body}</p>
+<div style="background:rgba(255,223,0,0.2);border-left:4px solid rgba(255,223,0,0.8);border-radius:10px;padding:18px;margin:25px 0;backdrop-filter:blur(5px)">
+<p style="color:#fff;font-size:13px;font-style:italic;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.2)">💭 "${getRandomQuote()}"</p>
+</div>
+<div style="text-align:center;margin:30px 0 10px">
+<a href="#" class="mobile-button" style="display:inline-block;background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);color:#fff;text-decoration:none;padding:18px 45px;border-radius:50px;font-weight:800;font-size:16px;border:2px solid rgba(255,255,255,0.5);box-shadow:0 8px 25px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.6),0 0 0 4px rgba(255,255,255,0.1);text-shadow:0 2px 10px rgba(0,0,0,0.3);transition:all 0.3s ease">GET STARTED ✨</a>
+</div>
+</div>
 </td></tr>
-</table>`, "#eef2ff");
+<tr><td style="background:rgba(0,0,0,0.2);backdrop-filter:blur(10px);padding:25px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)">
+<p style="color:rgba(255,255,255,0.8);font-size:12px;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.3)">${v.senderName} | ${v.companyName} © ${v.year}</p>
+</td></tr>
+</table>`, "#667eea");
 
     case "newsletter":
       template = baseWrapper(`
-<table width="100%" cellpadding="0" cellspacing="0" class="container" style="max-width:640px;margin:0 auto;background:#ffffff;box-shadow:0 2px 8px rgba(0,0,0,0.08)">
-<tr><td style="background:#059669;padding:50px 40px;position:relative">
-<div style="position:absolute;top:15px;right:20px;background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:20px;font-size:10px;color:#fff;font-weight:600;letter-spacing:1px;text-transform:uppercase">Newsletter</div>
-<table width="100%"><tr>
-<td style="width:70px;vertical-align:middle"><div style="background:linear-gradient(135deg,#10b981,#34d399);width:60px;height:60px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px">📰</div></td>
-<td class="mobile-padding" style="padding-left:20px;vertical-align:middle"><h1 class="mobile-heading" style="color:#fff;margin:0;font-size:28px;font-weight:700;line-height:1.2">${v.subject}</h1></td>
-</tr></table>
-</td></tr>
-<tr><td class="mobile-padding" style="padding:45px 40px;background:#f0fdf4">
-<div style="border-left:4px solid #10b981;padding-left:20px;margin-bottom:25px">
-<p class="mobile-text" style="color:#065f46;font-size:16px;line-height:1.6;margin:0;font-weight:600">Hello ${v.recipientName},</p>
+<table width="100%" cellpadding="0" cellspacing="0" class="container" style="max-width:640px;margin:0 auto;background:linear-gradient(135deg,#10b981 0%,#06b6d4 100%);border-radius:30px;overflow:hidden;box-shadow:0 20px 60px rgba(16,185,129,0.4),0 0 0 1px rgba(255,255,255,0.1) inset">
+<tr><td style="background:rgba(255,255,255,0.2);backdrop-filter:blur(15px);padding:40px;border-bottom:1px solid rgba(255,255,255,0.3)">
+<div style="text-align:center">
+<div style="width:90px;height:90px;margin:0 auto 20px;background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.5);box-shadow:0 0 50px rgba(255,255,255,0.6),inset 0 0 20px rgba(255,255,255,0.3);transform:rotate(-5deg)">
+<span style="font-size:45px;transform:rotate(5deg);display:block">📰</span>
 </div>
-<p class="mobile-text" style="color:#166534;font-size:15px;line-height:1.9;margin:0 0 30px;white-space:pre-wrap">${v.body}</p>
-<table width="100%" style="background:#ffffff;border-radius:12px;padding:25px;box-shadow:0 1px 3px rgba(0,0,0,0.1)">
-<tr><td>
-<a href="#" class="mobile-button" style="display:inline-block;background:#059669;color:#fff;text-decoration:none;padding:14px 40px;border-radius:8px;font-weight:600;font-size:15px;border:2px solid #059669;transition:all 0.3s">Continue Reading →</a>
+<h1 class="mobile-heading" style="color:#fff;margin:0;font-size:32px;font-weight:900;text-shadow:0 4px 20px rgba(0,0,0,0.3),0 0 50px rgba(255,255,255,0.4)">${v.subject || "Latest Newsletter"}</h1>
+</div>
 </td></tr>
-</table>
+<tr><td class="mobile-padding" style="padding:50px 45px">
+<div style="background:rgba(255,255,255,0.3);backdrop-filter:blur(25px);border-radius:25px;padding:40px;border:1px solid rgba(255,255,255,0.4);box-shadow:0 10px 40px rgba(0,0,0,0.15),inset 0 1px 0 rgba(255,255,255,0.6)">
+<p class="mobile-text" style="color:#fff;font-size:17px;line-height:1.7;margin:0 0 12px;text-shadow:0 2px 8px rgba(0,0,0,0.2)">Hello <strong style="font-weight:800">${v.recipientName}</strong>,</p>
+<p class="mobile-text" style="color:rgba(255,255,255,0.95);font-size:15px;line-height:1.9;margin:0 0 30px;white-space:pre-wrap">${v.body}</p>
+<div style="background:rgba(234,179,8,0.25);border-left:4px solid rgba(234,179,8,0.9);border-radius:12px;padding:20px;margin:25px 0;backdrop-filter:blur(10px);box-shadow:0 4px 15px rgba(0,0,0,0.1)">
+<p style="color:#fff;font-size:13px;font-style:italic;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.3)">✨ "${getRandomQuote()}"</p>
+</div>
+<div style="text-align:center;margin:30px 0 10px">
+<a href="#" class="mobile-button" style="display:inline-block;background:rgba(255,255,255,0.35);backdrop-filter:blur(10px);color:#fff;text-decoration:none;padding:16px 50px;border-radius:50px;font-weight:800;font-size:15px;border:2px solid rgba(255,255,255,0.6);box-shadow:0 8px 25px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.7),0 0 0 4px rgba(255,255,255,0.15);text-shadow:0 2px 10px rgba(0,0,0,0.3)">READ MORE →</a>
+</div>
+</div>
 </td></tr>
-<tr><td style="background:#dcfce7;padding:20px 40px;text-align:center;border-top:3px solid #10b981">
-<p style="color:#166534;font-size:12px;margin:0;line-height:1.6">📧 ${v.senderName} | ${v.companyName} © ${v.year}</p>
+<tr><td style="background:rgba(0,0,0,0.2);backdrop-filter:blur(10px);padding:25px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)">
+<p style="color:rgba(255,255,255,0.9);font-size:12px;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.3)">📧 ${v.senderName} | ${v.companyName} © ${v.year}</p>
 </td></tr>
-</table>`, "#f0fdf4");
+</table>`, "#10b981");
 
     case "password-reset":
       template = baseWrapper(`
-<table width="100%" cellpadding="0" cellspacing="0" class="container" style="max-width:580px;margin:0 auto;background:#ffffff;border-radius:0;box-shadow:0 0 0 1px #fee2e2">
-<tr><td style="padding:30px 40px;background:#fff5f5;border-bottom:1px solid #fecaca">
-<table width="100%"><tr>
-<td style="width:50px"><div style="background:#dc2626;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🔒</div></td>
-<td style="padding-left:15px;vertical-align:middle">
-<h1 class="mobile-heading" style="color:#991b1b;margin:0;font-size:22px;font-weight:700;letter-spacing:-0.3px">Security Alert</h1>
-<p style="color:#b91c1c;margin:3px 0 0;font-size:12px;font-weight:500">Password Reset Request</p>
-</td>
-</tr></table>
-</td></tr>
-<tr><td class="mobile-padding" style="padding:40px 45px">
-<p class="mobile-text" style="color:#374151;font-size:15px;line-height:1.7;margin:0 0 10px">Hi <strong style="color:#111827">${v.recipientName}</strong>,</p>
-<p class="mobile-text" style="color:#4b5563;font-size:14px;line-height:1.8;margin:0 0 25px;white-space:pre-wrap">${v.body}</p>
-<div style="background:#fef2f2;border:1px dashed #fca5a5;border-radius:8px;padding:20px;margin:0 0 30px">
-<p style="color:#7f1d1d;font-size:13px;line-height:1.6;margin:0">\u26a0\ufe0f <strong>Security Notice:</strong> This link expires in 24 hours. If you didn't request this, please ignore.</p>
-</div>
+<table width="100%" cellpadding="0" cellspacing="0" class="container" style="max-width:600px;margin:0 auto;background:linear-gradient(135deg,#dc2626 0%,#f97316 100%);border-radius:30px;overflow:hidden;box-shadow:0 20px 60px rgba(220,38,38,0.5),0 0 0 1px rgba(255,255,255,0.1) inset">
+<tr><td style="background:rgba(255,255,255,0.2);backdrop-filter:blur(15px);padding:40px;border-bottom:1px solid rgba(255,255,255,0.3)">
 <div style="text-align:center">
-<a href="#" class="mobile-button" style="display:inline-block;background:#dc2626;color:#fff;text-decoration:none;padding:16px 45px;border-radius:6px;font-weight:600;font-size:15px;border:2px solid #dc2626">Reset Password</a>
+<div style="width:100px;height:100px;margin:0 auto 20px;background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,0.5);box-shadow:0 0 50px rgba(255,223,0,0.8),inset 0 0 30px rgba(255,255,255,0.3);animation:pulse 2s infinite">
+<span style="font-size:50px">🔒</span>
+</div>
+<h1 class="mobile-heading" style="color:#fff;margin:0;font-size:32px;font-weight:900;text-shadow:0 4px 20px rgba(0,0,0,0.4),0 0 60px rgba(255,255,255,0.6)">Security Alert</h1>
+<p style="color:rgba(255,255,255,0.9);margin:8px 0 0;font-size:14px;text-shadow:0 2px 10px rgba(0,0,0,0.3)">Password Reset Request</p>
 </div>
 </td></tr>
-<tr><td style="background:#f9fafb;padding:25px 40px;text-align:center;border-top:1px solid #e5e7eb">
-<p style="color:#6b7280;font-size:11px;margin:0;line-height:1.6">${v.senderName} | ${v.companyName} \u00a9 ${v.year}</p>
+<tr><td class="mobile-padding" style="padding:50px 45px">
+<div style="background:rgba(255,255,255,0.25);backdrop-filter:blur(20px);border-radius:25px;padding:35px;border:1px solid rgba(255,255,255,0.4);box-shadow:0 10px 40px rgba(0,0,0,0.2),inset 0 1px 0 rgba(255,255,255,0.6)">
+<p class="mobile-text" style="color:#fff;font-size:17px;line-height:1.7;margin:0 0 12px;text-shadow:0 2px 8px rgba(0,0,0,0.2)">Hi <strong style="font-weight:800">${v.recipientName}</strong>,</p>
+<p class="mobile-text" style="color:rgba(255,255,255,0.95);font-size:15px;line-height:1.8;margin:0 0 25px;white-space:pre-wrap">${v.body}</p>
+<div style="background:rgba(255,223,0,0.25);border:2px dashed rgba(255,223,0,0.8);border-radius:15px;padding:20px;margin:25px 0;backdrop-filter:blur(10px);box-shadow:0 0 30px rgba(255,223,0,0.4)">
+<p style="color:#fff;font-size:13px;line-height:1.6;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.3)">⚠️ <strong>Security:</strong> Link expires in 24h. Ignore if not you.</p>
+</div>
+<div style="background:rgba(147,51,234,0.2);border-left:4px solid rgba(147,51,234,0.8);border-radius:12px;padding:18px;margin:20px 0;backdrop-filter:blur(8px)">
+<p style="color:#fff;font-size:12px;font-style:italic;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.2)">💭 "${getRandomQuote()}"</p>
+</div>
+<div style="text-align:center;margin:30px 0 10px">
+<a href="#" class="mobile-button" style="display:inline-block;background:rgba(255,255,255,0.35);backdrop-filter:blur(10px);color:#fff;text-decoration:none;padding:18px 50px;border-radius:50px;font-weight:800;font-size:16px;border:2px solid rgba(255,255,255,0.6);box-shadow:0 8px 30px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.7),0 0 0 4px rgba(255,255,255,0.15);text-shadow:0 2px 10px rgba(0,0,0,0.3)">RESET PASSWORD 🔐</a>
+</div>
+</div>
 </td></tr>
-</table>`);
+<tr><td style="background:rgba(0,0,0,0.25);backdrop-filter:blur(10px);padding:25px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)">
+<p style="color:rgba(255,255,255,0.9);font-size:12px;margin:0;text-shadow:0 1px 3px rgba(0,0,0,0.4)">${v.senderName} | ${v.companyName} © ${v.year}</p>
+</td></tr>
+</table>`, "#dc2626");
 
     case "invoice":
       template = baseWrapper(`
