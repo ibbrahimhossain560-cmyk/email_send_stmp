@@ -36,7 +36,7 @@ export default function SendPage() {
   const [sending, setSending] = useState(false);
   const [status, setStatus] = useState<{ type: "success" | "error"; msg: string } | null>(null);
   const [previewHtml, setPreviewHtml] = useState("");
-  const [showPreview, setShowPreview] = useState(false);
+  const [previewLoading, setPreviewLoading] = useState(false);
   const [previewDevice, setPreviewDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const [authenticated, setAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
@@ -84,6 +84,59 @@ export default function SendPage() {
 
   const getToken = () => localStorage.getItem("nrmail_token") || "";
 
+  // Auto-preview: updates whenever template, body, subject, recipientName, mode, or customHtml changes
+  useEffect(() => {
+    if (!authenticated) return;
+    
+    const timer = setTimeout(() => {
+      updatePreview();
+    }, 400); // 400ms debounce
+    
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTemplate, body, subject, recipientName, mode, customHtml, buttonLink, buttonText, authenticated]);
+
+  const updatePreview = async () => {
+    try {
+      setPreviewLoading(true);
+      let htmlToPreview = "";
+      
+      if (mode === "html") {
+        htmlToPreview = customHtml || `<div style="padding:40px;text-align:center;font-family:Arial,sans-serif;color:#64748b"><p style="font-size:48px;margin-bottom:16px">🎨</p><h2 style="margin:0 0 8px;color:#334155">Custom HTML Mode</h2><p>Paste your HTML code in the editor to see a live preview here.</p></div>`;
+      } else if (mode === "plain") {
+        const plainBody = body || "Your plain text email content will appear here...";
+        htmlToPreview = `<!DOCTYPE html><html><head><style>body{margin:0;padding:40px;font-family:'Segoe UI',Arial,sans-serif;background:#f8fafc;color:#1e293b;line-height:1.8;}</style></head><body><div style="max-width:560px;margin:0 auto;background:#fff;border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.1)"><pre style="white-space:pre-wrap;word-wrap:break-word;font-family:inherit;margin:0;font-size:15px">${plainBody.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre></div></body></html>`;
+      } else if (mode === "ai-generate") {
+        htmlToPreview = `<div style="padding:60px 40px;text-align:center;font-family:Arial,sans-serif;background:linear-gradient(135deg,#7c3aed10,#ec489910);min-height:400px;display:flex;align-items:center;justify-content:center"><div><p style="font-size:56px;margin-bottom:16px">🤖</p><h2 style="margin:0 0 12px;color:#7c3aed;font-size:22px">AI Generate Mode</h2><p style="color:#64748b;font-size:14px;max-width:300px;margin:0 auto">Describe what you want and click Generate. The AI-created content will appear as a template preview.</p></div></div>`;
+      } else {
+        // Template mode — fetch from server
+        const token = getToken();
+        const res = await fetch("/api/preview", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+          body: JSON.stringify({
+            templateId: selectedTemplate || "welcome",
+            variables: {
+              recipientName: recipientName || "John",
+              body: body || "This is a preview of how your email will look using this template.",
+              subject: subject || "Preview Email",
+              buttonLink: buttonLink || "#",
+              buttonText: buttonText || "Get Started"
+            },
+          }),
+        });
+        const data = await res.json();
+        htmlToPreview = data.html;
+      }
+      
+      setPreviewHtml(htmlToPreview);
+    } catch (error) {
+      console.error("Preview error:", error);
+    } finally {
+      setPreviewLoading(false);
+    }
+  };
+
   const handleAiGenerate = async () => {
     if (!aiDescription.trim()) {
       setStatus({ type: "error", msg: "Please describe what you want in the email" });
@@ -110,12 +163,19 @@ export default function SendPage() {
       const data = await res.json();
 
       if (res.ok) {
-        setBody(data.content);
         if (data.subject && !subject) {
           setSubject(data.subject);
         }
-        setMode("template"); // Switch to template mode to see the generated content
-        setStatus({ type: "success", msg: "🤖 AI generated content successfully!" });
+        if (aiTemplateStyle === "html" && data.content) {
+          // For HTML style, put generated content in custom HTML mode
+          setCustomHtml(data.content);
+          setMode("html");
+          setStatus({ type: "success", msg: "\ud83e\udd16 AI generated HTML email successfully! Check the preview." });
+        } else {
+          setBody(data.content);
+          setMode("template"); // Switch to template mode to see the generated content
+          setStatus({ type: "success", msg: "\ud83e\udd16 AI generated content successfully! Check the preview." });
+        }
       } else {
         setStatus({ type: "error", msg: data.error || "Failed to generate content" });
       }
@@ -174,35 +234,8 @@ export default function SendPage() {
     }
   };
 
-  const loadPreview = async () => {
-    let htmlToPreview = "";
-    
-    if (mode === "html") {
-      htmlToPreview = customHtml;
-    } else if (mode === "plain") {
-      htmlToPreview = `<pre style="font-family: Arial, sans-serif; white-space: pre-wrap; word-wrap: break-word;">${body}</pre>`;
-    } else {
-      // Template mode
-      const res = await fetch("/api/preview", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${getToken()}` },
-        body: JSON.stringify({
-          templateId: selectedTemplate,
-          variables: { 
-            recipientName: recipientName || "there", 
-            body, 
-            subject,
-            buttonLink: buttonLink || "#",
-            buttonText: buttonText || "Get Started"
-          },
-        }),
-      });
-      const data = await res.json();
-      htmlToPreview = data.html;
-    }
-    
-    setPreviewHtml(htmlToPreview);
-    setShowPreview(true);
+  const loadPreview = () => {
+    updatePreview();
   };
 
   const handleSend = async (e: React.FormEvent) => {
@@ -641,7 +674,12 @@ export default function SendPage() {
                 </div>
               </div>
               <div className="p-4 flex justify-center bg-muted/20">
-                {showPreview && previewHtml ? (
+                {previewLoading ? (
+                  <div className="flex flex-col items-center justify-center py-20 text-muted">
+                    <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin mb-4" />
+                    <p className="text-sm">Loading preview...</p>
+                  </div>
+                ) : previewHtml ? (
                   <div 
                     className="transition-all duration-300"
                     style={{
@@ -659,7 +697,7 @@ export default function SendPage() {
                 ) : (
                   <div className="flex flex-col items-center justify-center py-20 text-muted">
                     <svg className="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                    <p className="text-sm">Click &quot;Preview&quot; to see your email</p>
+                    <p className="text-sm">Select a template to see preview</p>
                   </div>
                 )}
               </div>
