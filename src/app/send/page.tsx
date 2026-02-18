@@ -37,6 +37,7 @@ export default function SendPage() {
   const [status, setStatus] = useState<{ type: "success" | "error"; msg: string } | null>(null);
   const [previewHtml, setPreviewHtml] = useState("");
   const [showPreview, setShowPreview] = useState(false);
+  const [previewDevice, setPreviewDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const [authenticated, setAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
   const [enhancingSubject, setEnhancingSubject] = useState(false);
@@ -609,16 +610,52 @@ export default function SendPage() {
                   <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
                   <div className="h-3 w-3 rounded-full bg-success/60" />
                 </div>
-                <span className="text-xs text-muted">Email Preview</span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice("desktop")}
+                    className={`p-1.5 rounded transition-colors ${previewDevice === "desktop" ? "bg-primary text-primary-fg" : "text-muted hover:text-fg hover:bg-surface"}`}
+                    title="Desktop View"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><line x1="8" y1="21" x2="16" y2="21" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><line x1="12" y1="17" x2="12" y2="21" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice("tablet")}
+                    className={`p-1.5 rounded transition-colors ${previewDevice === "tablet" ? "bg-primary text-primary-fg" : "text-muted hover:text-fg hover:bg-surface"}`}
+                    title="Tablet View"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPreviewDevice("mobile")}
+                    className={`p-1.5 rounded transition-colors ${previewDevice === "mobile" ? "bg-primary text-primary-fg" : "text-muted hover:text-fg hover:bg-surface"}`}
+                    title="Mobile View"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2" ry="2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </button>
+                  <span className="text-xs text-muted ml-2">
+                    {previewDevice === "desktop" ? "Desktop" : previewDevice === "tablet" ? "Tablet" : "Mobile"}
+                  </span>
+                </div>
               </div>
-              <div className="p-4">
+              <div className="p-4 flex justify-center bg-muted/20">
                 {showPreview && previewHtml ? (
-                  <iframe
-                    srcDoc={previewHtml}
-                    className="w-full rounded-lg bg-white"
-                    style={{ minHeight: "500px", border: "none" }}
-                    title="Email Preview"
-                  />
+                  <div 
+                    className="transition-all duration-300"
+                    style={{
+                      width: previewDevice === "desktop" ? "100%" : previewDevice === "tablet" ? "768px" : "375px",
+                      maxWidth: "100%"
+                    }}
+                  >
+                    <iframe
+                      srcDoc={previewHtml}
+                      className="w-full rounded-lg bg-white shadow-lg border border-border"
+                      style={{ minHeight: "500px", height: "600px", border: "1px solid #e5e7eb" }}
+                      title="Email Preview"
+                    />
+                  </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-20 text-muted">
                     <svg className="w-16 h-16 mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>

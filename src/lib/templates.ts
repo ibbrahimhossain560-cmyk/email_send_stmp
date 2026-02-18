@@ -30,41 +30,81 @@ function baseWrapper(content: string, bgColor: string = "#f4f4f7"): string {
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Email</title>
+<!--[if mso]>
+<style type="text/css">
+  table { border-collapse: collapse; }
+  .mobile-padding { padding: 20px 15px !important; }
+</style>
+<![endif]-->
 <style type="text/css">
   /* Reset styles */
   body { margin: 0 !important; padding: 0 !important; width: 100% !important; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
-  table { border-collapse: collapse !important; }
+  table { border-collapse: collapse !important; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
   img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
   
-  /* Responsive styles */
+  /* Client-specific fixes */
+  .ExternalClass { width: 100%; }
+  .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+  
+  /* Responsive styles - Using max-width for better support */
   @media only screen and (max-width: 620px) {
-    .wrapper { width: 100% !important; }
-    .container { max-width: 100% !important; width: 100% !important; }
+    body { width: 100% !important; min-width: 100% !important; }
+    .wrapper { width: 100% !important; padding: 10px 5px !important; }
+    .container { max-width: 100% !important; width: 100% !important; min-width: 100% !important; }
     .mobile-padding { padding: 20px 15px !important; }
-    .mobile-heading { font-size: 24px !important; line-height: 1.3 !important; }
+    .mobile-heading { font-size: 24px !important; line-height: 1.3 !important; padding: 10px !important; }
     .mobile-subheading { font-size: 18px !important; line-height: 1.4 !important; }
     .mobile-text { font-size: 14px !important; line-height: 1.6 !important; }
-    .mobile-button { padding: 14px 35px !important; font-size: 15px !important; display: block !important; width: 85% !important; margin: 0 auto !important; }
-    .hide-mobile { display: none !important; max-height: 0 !important; overflow: hidden !important; }
-    .show-mobile { display: block !important; max-height: none !important; }
+    .mobile-button { 
+      padding: 14px 28px !important; 
+      font-size: 15px !important; 
+      display: block !important; 
+      width: auto !important;
+      max-width: 280px !important;
+      margin: 10px auto !important; 
+      text-align: center !important;
+      box-sizing: border-box !important;
+    }
+    .hide-mobile { display: none !important; max-height: 0 !important; overflow: hidden !important; visibility: hidden !important; }
+    .show-mobile { display: block !important; max-height: none !important; visibility: visible !important; }
     .mobile-center { text-align: center !important; }
-    .mobile-full-width { width: 100% !important; }
+    .mobile-full-width { width: 100% !important; max-width: 100% !important; }
     .mobile-stack { display: block !important; width: 100% !important; }
-    .mobile-3col { width: 33.33% !important; }
+    
+    /* Force table cells to stack */
+    table[class="container"] { width: 100% !important; }
+    td[class="mobile-padding"] { padding: 20px 15px !important; }
   }
   
   @media only screen and (max-width: 480px) {
-    .mobile-heading { font-size: 22px !important; }
+    .wrapper { padding: 5px 2px !important; }
+    .mobile-heading { font-size: 22px !important; padding: 8px !important; }
     .mobile-text { font-size: 13px !important; }
-    .mobile-button { padding: 12px 30px !important; font-size: 14px !important; }
-    .small-padding { padding: 15px 12px !important; }
+    .mobile-button { padding: 12px 24px !important; font-size: 14px !important; }
+    .small-padding { padding: 15px 10px !important; }
+    .mobile-padding { padding: 15px 12px !important; }
+  }
+  
+  /* iOS-specific fixes */
+  @media only screen and (max-device-width: 480px) {
+    .mobile-button { width: auto !important; }
   }
 </style>
 </head>
-<body style="margin:0;padding:0;background-color:${bgColor};font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale">
-<div class="wrapper" style="max-width:680px;margin:0 auto;padding:20px 10px">
+<body style="margin:0;padding:0;background-color:${bgColor};font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;width:100%;">
+<!--[if mso]>
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td align="center">
+<![endif]-->
+<table role="presentation" class="wrapper" style="max-width:680px;margin:0 auto;padding:20px 10px;width:100%;" width="100%" cellpadding="0" cellspacing="0" border="0">
+<tr><td align="center">
 ${content}
-</div>
+</td></tr>
+</table>
+<!--[if mso]>
+</td></tr>
+</table>
+<![endif]-->
 </body>
 </html>`;
 }
