@@ -30,9 +30,9 @@ export async function POST(req: NextRequest) {
     const apiUrl = process.env.AI_API_URL || "https://api.groq.com/openai/v1/chat/completions";
     const model = process.env.AI_MODEL || "llama-3.3-70b-versatile";
 
-    if (!apiKey) {
+    if (!apiKey || apiKey === "gsk_get_your_free_key_from_groq" || apiKey === "your_groq_api_key_here") {
       return NextResponse.json(
-        { error: "AI API key not configured. Please set AI_API_KEY in environment variables." },
+        { error: "AI API key not configured. Please set a valid AI_API_KEY in .env.local file." },
         { status: 500 }
       );
     }
@@ -64,8 +64,27 @@ export async function POST(req: NextRequest) {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       console.error("AI API Error:", errorData);
+      
+      // Provide more specific error messages
+      if (response.status === 401) {
+        return NextResponse.json(
+          { error: "Invalid AI API key. Please check your Groq API key in .env.local" },
+          { status: 500 }
+        );
+      } else if (response.status === 429) {
+        return NextResponse.json(
+          { error: "Rate limit exceeded. Please wait a moment and try again." },
+          { status: 500 }
+        );
+      } else if (response.status === 400) {
+        return NextResponse.json(
+          { error: `Invalid request: ${errorData.error?.message || "Check your AI_MODEL setting"}` },
+          { status: 500 }
+        );
+      }
+      
       return NextResponse.json(
-        { error: `AI API error: ${response.status} ${response.statusText}` },
+        { error: `AI API error: ${errorData.error?.message || response.statusText}` },
         { status: 500 }
       );
     }
