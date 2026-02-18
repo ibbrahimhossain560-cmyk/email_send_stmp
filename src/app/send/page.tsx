@@ -24,6 +24,8 @@ export default function SendPage() {
   const [showPreview, setShowPreview] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [checking, setChecking] = useState(true);
+  const [enhancingSubject, setEnhancingSubject] = useState(false);
+  const [enhancingBody, setEnhancingBody] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -64,6 +66,54 @@ export default function SendPage() {
   }, [authenticated]);
 
   const getToken = () => localStorage.getItem("nrmail_token") || "";
+
+  const handleEnhance = async (type: "subject" | "body") => {
+    const text = type === "subject" ? subject : body;
+    
+    if (!text.trim()) {
+      setStatus({ type: "error", msg: `Please enter ${type === "subject" ? "a subject" : "message body"} first` });
+      return;
+    }
+
+    if (type === "subject") {
+      setEnhancingSubject(true);
+    } else {
+      setEnhancingBody(true);
+    }
+    setStatus(null);
+
+    try {
+      const res = await fetch("/api/enhance", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json", 
+          Authorization: `Bearer ${getToken()}` 
+        },
+        body: JSON.stringify({ text, type }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        if (type === "subject") {
+          setSubject(data.enhanced);
+        } else {
+          setBody(data.enhanced);
+        }
+        setStatus({ type: "success", msg: `✨ ${type === "subject" ? "Subject" : "Message"} enhanced successfully!` });
+      } else {
+        setStatus({ type: "error", msg: data.error || "Failed to enhance text" });
+      }
+    } catch (error) {
+      setStatus({ type: "error", msg: "Network error. Please try again." });
+    } finally {
+      if (type === "subject") {
+        setEnhancingSubject(false);
+      } else {
+        setEnhancingBody(false);
+      }
+    }
+  };
 
   const loadPreview = async () => {
     const res = await fetch("/api/preview", {
@@ -190,7 +240,33 @@ export default function SendPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Subject</label>
+              <label className="block text-sm font-medium mb-2 flex items-center justify-between">
+                <span>Subject</span>
+                <button
+                  type="button"
+                  onClick={() => handleEnhance("subject")}
+                  disabled={enhancingSubject || !subject.trim()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500/10 to-pink-500/10 hover:from-purple-500/20 hover:to-pink-500/20 text-purple-400 hover:text-purple-300 transition-all text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed border border-purple-500/20 hover:border-purple-500/40"
+                  title="AI enhance subject line"
+                >
+                  {enhancingSubject ? (
+                    <>
+                      <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Enhancing...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                      Magic ✨
+                    </>
+                  )}
+                </button>
+              </label>
               <input
                 type="text"
                 required
@@ -202,7 +278,33 @@ export default function SendPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Message Body</label>
+              <label className="block text-sm font-medium mb-2 flex items-center justify-between">
+                <span>Message Body</span>
+                <button
+                  type="button"
+                  onClick={() => handleEnhance("body")}
+                  disabled={enhancingBody || !body.trim()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gradient-to-r from-purple-500/10 to-pink-500/10 hover:from-purple-500/20 hover:to-pink-500/20 text-purple-400 hover:text-purple-300 transition-all text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed border border-purple-500/20 hover:border-purple-500/40"
+                  title="AI enhance message body"
+                >
+                  {enhancingBody ? (
+                    <>
+                      <svg className="w-3.5 h-3.5 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Enhancing...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                      Magic ✨
+                    </>
+                  )}
+                </button>
+              </label>
               <textarea
                 value={body}
                 onChange={(e) => setBody(e.target.value)}

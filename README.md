@@ -37,6 +37,7 @@ I focus on delivering high-quality work, on time, with clear communication. I ke
 
 ## Features
 
+- ✨ **NEW: AI Email Enhancement** - Magic button to fix grammar, spelling, and improve clarity using free Groq API
 - SMTP email sending via Brevo relay
 - 13 HTML email templates (Welcome, Newsletter, Password Reset, Invoice, Promotion, Event Invite, Feedback, Order Confirmation, Birthday, Minimal, Dark Mode, Casual, Just Email)
 - Password-protected email sending (authentication required)
@@ -82,9 +83,16 @@ SENDER_EMAIL=your_verified_sender@yourdomain.com
 SENDER_NAME=Your Name
 REPLY_TO_EMAIL=your_reply_to@yourdomain.com
 ADMIN_PASSWORD=your_secure_password_here
+
+# AI Enhancement (Optional - for Magic ✨ button)
+AI_API_KEY=your_groq_api_key_here
+AI_API_URL=https://api.groq.com/openai/v1/chat/completions
+AI_MODEL=llama-3.3-70b-versatile
 ```
 
 > ⚠️ **Security Note**: Never commit `.env.local` or expose your real SMTP credentials in public repositories.
+> 
+> 📖 **AI Enhancement Setup**: For the Magic ✨ feature, get your FREE API key from [Groq Console](https://console.groq.com). See [magic_api.MD](magic_api.MD) for the complete setup guide.
 
 4. Run development server:
 ```bash
@@ -113,6 +121,28 @@ Email sending requires authentication for security. Log in at `/login` with your
 | POST | /api/preview | Preview a template |
 | POST | /api/auth | Login with password |
 | POST | /api/auth/verify | Verify auth token |
+| POST | /api/enhance | AI-enhance email text (auth required) ✨ |
+
+## ✨ AI Email Enhancement (Magic Button)
+
+The Magic ✨ button uses **free AI models** from Groq to automatically improve your emails:
+
+- **For Subjects**: Fixes grammar, makes it professional, keeps it concise
+- **For Body**: Corrects errors, improves flow, maintains your intent
+
+### Quick Setup:
+
+1. Get FREE API key: [console.groq.com](https://console.groq.com)
+2. Add to `.env.local`:
+   ```bash
+   AI_API_KEY=gsk_your_key_here
+   ```
+3. Restart dev server
+4. Click Magic ✨ next to Subject or Body fields
+
+**📖 Detailed Guide**: See [magic_api.MD](magic_api.MD) for complete setup, examples, troubleshooting, and alternative AI providers.
+
+**Rate Limits**: Groq free tier includes 30 requests/minute (14,400/day) - more than enough!
 
 ## Email Templates
 
